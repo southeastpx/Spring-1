@@ -13,8 +13,15 @@ public class Main {
 		//1.创建spring的IOC容器
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		//2.从IOC容器中获取bean实例
-		//HelloWorld helloWorld = (HelloWorld) ctx.getBean("helloworld");
+		HelloWorld helloWorld = (HelloWorld) ctx.getBean("helloworld");
+		//HelloWorld helloWorld = ctx.getBean(HelloWorld.class);
+		System.out.println(helloWorld);
 		//3.调用hello方法
 		//helloWorld.hello();
+		
+		Car car = (Car) ctx.getBean("car");
+		System.out.println(car);
+		car = (Car) ctx.getBean("car2");
+		System.out.println(car);
 	}
 }

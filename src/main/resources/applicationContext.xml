@@ -2,9 +2,26 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
+	<!-- 
+		配置bean
+		class:bean的全类名，通过反射的方式在IOC容器中创建bean，所以必须在bean编写无参的构造方法
+		id:标识容器中的bean，id在IOC容器中唯一
+	 -->
 	<bean id="helloworld" class="com.pauu.spring.beans.HelloWorld">
 		<property name="name" value="Spring"></property>
+	</bean>
+	
+	<!-- 通过构造器配置bean -->
+	<bean id="car" class="com.pauu.spring.beans.Car">
+		<constructor-arg value="Audi" index="0"></constructor-arg>
+		<constructor-arg value="Shanghai" index="1"></constructor-arg>
+		<constructor-arg value="300000" type="double"></constructor-arg>
+	</bean>
+	
+	<bean id="car2" class="com.pauu.spring.beans.Car">
+		<constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
+		<constructor-arg value="Beijing" type="java.lang.String"></constructor-arg>
+		<constructor-arg value="240" type="int"></constructor-arg>
 	</bean>
 
 </beans>
