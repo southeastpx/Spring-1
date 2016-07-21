@@ -6,6 +6,55 @@ public class Car {
 	private double price;
 	private int maxSpeed;
 	
+	
+	public String getBrand() {
+		return brand;
+	}
+
+
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+
+
+	public String getCrop() {
+		return crop;
+	}
+
+
+
+	public void setCrop(String crop) {
+		this.crop = crop;
+	}
+
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+
+
+
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+
+
+
 	public Car(String brand, String crop, double price) {
 		super();
 		this.brand = brand;

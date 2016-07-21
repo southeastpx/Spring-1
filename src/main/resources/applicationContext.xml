@@ -20,8 +20,71 @@
 	
 	<bean id="car2" class="com.pauu.spring.beans.Car">
 		<constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
-		<constructor-arg value="Beijing" type="java.lang.String"></constructor-arg>
-		<constructor-arg value="240" type="int"></constructor-arg>
+		<!-- 如果字面值包含特殊字符，可以使用<![CDATA[]]>包裹起来 -->
+		<!-- 属性值也可以通过value子节点进行直接配置 -->
+		<constructor-arg type="java.lang.String">
+			<value><![CDATA[<ShangHai^>]]></value>
+		</constructor-arg>
+		<constructor-arg type="int">
+			<value>250</value>
+		</constructor-arg>
 	</bean>
 
+	<bean id="person" class="com.pauu.spring.beans.Person">
+		<property name="name" value="TOM"></property>
+		<property name="age" value="27"></property>
+		<!-- 可以使用property的ref属性建立bean之间的引用关系 -->
+<!-- 		<property name="car" ref="car2"></property> -->
+		<!-- 也可这么写，等价 -->
+		<!-- <property name="car">
+			<ref bean="car2"/>
+		</property> -->
+		<!-- 内部bean,不能被外部使用，只能在内部使用 -->
+		<property name="car">
+			<bean class="com.pauu.spring.beans.Car">
+				<constructor-arg value="Ford"></constructor-arg>
+				<constructor-arg value="Suzhou"></constructor-arg>
+				<constructor-arg value="200000" type="double"></constructor-arg>
+			</bean>
+		</property>
+		<property name="car.maxSpeed" value="370"></property>
+	</bean>
+	
+	<bean id="person2" class="com.pauu.spring.beans.Person">
+		<constructor-arg value="Jerry"></constructor-arg>
+		<constructor-arg value="29"></constructor-arg>
+		<constructor-arg ref="car"></constructor-arg>
+		<!-- 为级联属性赋值 .注意：属性需要先初始化，然后才能为级联属性赋值，否则会出异常，和Struts2不同-->
+		<property name="car.maxSpeed" value="280"></property>
+		<!-- 测试null值 -->
+<!-- 		<constructor-arg><null/></constructor-arg> -->
+	</bean>
+	<!-- 测试为集合属性赋值 -->
+	<bean id="person3" class="com.pauu.spring.beans.collections.Person">
+		<property name="name" value="Mike"></property>
+		<property name="age" value="36"></property>
+		<property name="cars">
+			<list>
+				<ref bean="car"/>
+				<ref bean="car2"/>
+				<bean class="com.pauu.spring.beans.Car">
+					<constructor-arg value="Ford"></constructor-arg>
+					<constructor-arg value="Suzhou"></constructor-arg>
+					<constructor-arg value="200000" type="double"></constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 为map属性赋值 -->
+	<bean id="newPerson" class="com.pauu.spring.beans.collections.NewPerson">
+		<property name="name" value="Rose"></property>
+		<property name="age" value="39"></property>
+		<property name="cars">
+			<map>
+				<entry key="AA" value-ref="car"></entry>
+				<entry key="BB" value-ref="car2"></entry>
+			</map>
+		</property>
+	</bean>
 </beans>
