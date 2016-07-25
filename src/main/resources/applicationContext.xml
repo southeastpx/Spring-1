@@ -17,7 +17,6 @@
 		<constructor-arg value="Shanghai" index="1"></constructor-arg>
 		<constructor-arg value="300000" type="double"></constructor-arg>
 	</bean>
-	
 	<bean id="car2" class="com.pauu.spring.beans.Car">
 		<constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
 		<!-- 如果字面值包含特殊字符，可以使用<![CDATA[]]>包裹起来 -->
@@ -87,4 +86,19 @@
 			</map>
 		</property>
 	</bean>
+	
+	<!-- 为properties属性赋值 -->
+	<bean id="dataSource" class="com.pauu.spring.beans.collections.DataSource">
+		<property name="properties">
+			<props>
+				<prop key="username">root</prop>
+				<prop key="password">root123</prop>
+				<prop key="url">jdbc:mysql:///test</prop>
+				<prop key="driver">com.mysql.jdbc.driver</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 配置单独的集合bean，以供多个bean进行引用，需要导入util命名空间 -->
+
 </beans>
